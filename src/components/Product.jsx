@@ -1,9 +1,12 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { IoIosStarHalf, IoIosStar, IoIosStarOutline } from "react-icons/io";
 
 export default function Product({ info }) {
-  const { productId, name, img, price, rating } = info;
+  const { name, img, price, rating } = info;
+
+  const handleImageLoad = () => {
+    setIsLoadingImg(false);
+  };
 
   function ratingToArray() {
     const ratingArray = [];
@@ -41,8 +44,14 @@ export default function Product({ info }) {
 }
 
 const Container = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
   background-color: #ffffff;
   padding: 10px;
+  height: 314px;
+  width: 220px;
   margin: 0;
   border-radius: 10px;
   border: none;
@@ -79,6 +88,9 @@ const Container = styled.button`
   }
 
   @media (max-width: 910px) {
+    height: 265px;
+    width: 170px;
+    
     h4,
     p {
       font-size: 15px;
@@ -95,6 +107,7 @@ const Container = styled.button`
 
   @media (max-width: 576px) {
     width: 150px;
+    height: 236px;
 
     h4 {
       font-size: 13px;
