@@ -107,7 +107,7 @@ const Container = styled.button`
     width: 150px;
     height: 236px;
 
-    h4 {
+    h4, p {
       font-size: 13px;
     }
 
