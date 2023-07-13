@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { IoIosStarHalf, IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 export default function Product({ info }) {
-  const { name, img, price, rating } = info;
-
-  const handleImageLoad = () => {
-    setIsLoadingImg(false);
-  };
+  const { productId, name, img, price, rating } = info;
+  const navigate = useNavigate();
 
   function ratingToArray() {
     const ratingArray = [];
@@ -25,7 +23,7 @@ export default function Product({ info }) {
   }
 
   return (
-    <Container>
+    <Container onClick={() => navigate(`/product/${productId}`)}>
       <img src={img} alt={name} />
       <h4>{name}</h4>
       <div>
@@ -38,7 +36,7 @@ export default function Product({ info }) {
           return <IoIosStarOutline key={index} />;
         })}
       </div>
-      <p>{"$" + price}</p>
+      <p>{"$" + price.toFixed(2)}</p>
     </Container>
   );
 }
