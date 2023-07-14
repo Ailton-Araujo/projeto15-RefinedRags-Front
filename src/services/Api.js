@@ -25,3 +25,17 @@ const api = {
 }
 
 export default api;
+
+
+function getProducts(success, failure) {
+  axios
+    .get("/")
+    .then((response) => {
+      success(response.data);
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
+}
+
+export { getProducts };
