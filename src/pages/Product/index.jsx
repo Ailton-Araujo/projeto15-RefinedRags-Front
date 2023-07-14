@@ -14,8 +14,8 @@ export default function Product() {
   const sizeRef = useRef(null);
   const navigate = useNavigate();
 
-  function addToCart() {
-    //Colocar no carrinho
+  function addToCart(data) {
+    console.log(data);
   }
 
   function handleForm(event) {
@@ -34,7 +34,7 @@ export default function Product() {
       return alert("Choose size.");
     }
 
-    addToCart();
+    addToCart(data);
   }
 
   useEffect(() => {
