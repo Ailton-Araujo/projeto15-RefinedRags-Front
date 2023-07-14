@@ -10,12 +10,12 @@ function tokenProvider(auth) {
 }
 
 function signUp(body) {
-  const promise = axios.post(`${baseURL}/signup`, body);
+  const promise = axios.post('/signup', body);
   return promise;
 }
 
 function signIn(body) {
-  const promise = axios.post(`${baseURL}/signin`, body);
+  const promise = axios.post('/signin', body);
   return promise;
 }
 

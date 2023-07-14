@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import api from "../../services/Api";
 
@@ -7,14 +7,17 @@ export default function SignUp() {
 
     const [formData, setFormData] = useState({fullName: "", email: "", password: "", passwordConfirmation: "", subscription: true});
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     function handleSubmit(e){
         e.preventDefault();
         setLoading(true);
-        if(formData.password !== formData.passwordConfirmation)
+        if(formData.password !== formData.passwordConfirmation){
+            setLoading(false);
             return alert("The password doesn't match with the password confirmation")
+        }
         const data = {...formData};
-        delete formData.passwordConfirmation;
+        delete data.passwordConfirmation;
         const promise = api.signUp(data);
         promise.then(() => {
             setLoading(false);
