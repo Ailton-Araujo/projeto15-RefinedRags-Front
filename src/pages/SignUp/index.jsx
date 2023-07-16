@@ -7,6 +7,7 @@ export default function SignUp() {
 
     const [formData, setFormData] = useState({fullName: "", email: "", password: "", passwordConfirmation: "", subscription: true});
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState({fullName: false, email: false, password: false, passwordConfirmation: false});
     const navigate = useNavigate();
 
     function handleSubmit(e){
@@ -41,15 +42,65 @@ export default function SignUp() {
         <SignUpContainer>
         <h1>Refined Rags</h1>
           <form onSubmit={handleSubmit}>
-            <input placeholder="Full Name" name="fullName" type="text" autoComplete="name" value={formData.fullName} onChange={handleChange} required disabled={loading}/>
-            <input placeholder="E-mail" name="email" type="email" autoComplete="email" value={formData.email} onChange={handleChange} required disabled={loading}/>
-            <input placeholder="Password" name="password" type="password" autoComplete="new-password" value={formData.password} onChange={handleChange} required disabled={loading}/>
-            <input placeholder="Password Confirmation" name="passwordConfirmation" type="password" autoComplete="new-password" value={formData.passwordConfirmation} onChange={handleChange} required disabled={loading}/>
+            <FormInput 
+                placeholder="Full Name" 
+                name="fullName" 
+                type="text" 
+                autoComplete="name" 
+                value={formData.fullName} 
+                onChange={handleChange} 
+                required 
+                disabled={loading} 
+                onInvalid={() => setError({...error, fullName: true})}
+                onInput={() => setError({...error, fullName: false})}
+                err={error.fullName ? 1 : 0}/>
+            <FormInput 
+                placeholder="E-mail" 
+                name="email" type="email" 
+                autoComplete="email" 
+                value={formData.email} 
+                onChange={handleChange} 
+                required 
+                disabled={loading} 
+                onInvalid={() => setError({...error, email: true})}
+                onInput={() => setError({...error, email: false})}
+                err={error.email ? 1 : 0}/>
+            <FormInput 
+                placeholder="Password" 
+                name="password" 
+                type="password" 
+                autoComplete="new-password"
+                minLength="3"
+                value={formData.password} 
+                onChange={handleChange} 
+                required 
+                disabled={loading} 
+                onInvalid={() => setError({...error, password: true})} 
+                onInput={() => setError({...error, password: false})} 
+                err={error.password ? 1 : 0}/>
+            <FormInput 
+                placeholder="Password Confirmation" 
+                name="passwordConfirmation" 
+                type="password" 
+                autoComplete="new-password"
+                minLength="3"
+                value={formData.passwordConfirmation} 
+                onChange={handleChange} 
+                required 
+                disabled={loading} 
+                onInvalid={() => setError({...error, passwordConfirmation: true})} 
+                onInput={() => setError({...error, passwordConfirmation: false})} 
+                err={error.passwordConfirmation ? 1 : 0}/>
             <div>
-                <input type="checkbox" defaultChecked="true" name="subscription" onChange={handleSubscriptionChange} disabled={loading}/>
+                <FormInput 
+                    type="checkbox" 
+                    defaultChecked="true" 
+                    name="subscription" 
+                    onChange={handleSubscriptionChange} 
+                    disabled={loading}/>
                 <label htmlFor="subscription">Subscribe to receive promotional emails</label>
             </div>
-            <button disabled={loading}>Entrar</button>
+            <button disabled={loading || !formData.email || !formData.fullName || !formData.password || !formData.passwordConfirmation}>Register</button>
             <p>Already have an account? <Link to="/signin">Sign in</Link></p>
           </form>      
         </SignUpContainer>
@@ -57,7 +108,6 @@ export default function SignUp() {
 }
 
 const SignUpContainer = styled.div`
-    background-color: #EEEEEE;
     display: flex;
     flex-direction:column;
     justify-content: flex-start;
@@ -75,4 +125,9 @@ const SignUpContainer = styled.div`
             margin-top:10px;
         }
     }
+`
+
+export const FormInput = styled.input`
+    border-color: ${props => props.err ? "red" : "#CCCCCC"};
+    background: ${props => props.err ? "#ffedf4" : ""};
 `
