@@ -40,7 +40,6 @@ export default function SignUp() {
 
     return (
         <SignUpContainer>
-        <h1>Refined Rags</h1>
           <form onSubmit={handleSubmit}>
             <FormInput 
                 placeholder="Full Name" 

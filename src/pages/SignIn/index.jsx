@@ -35,7 +35,6 @@ export default function SignIn() {
 
     return (
         <SignInContainer>
-        <h1>Refined Rags</h1>
           <form onSubmit={handleSubmit}>
             <FormInput 
                 placeholder="E-mail" 
