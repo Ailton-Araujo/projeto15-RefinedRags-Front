@@ -3,11 +3,13 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import api from "../../services/Api";
+import { FormInput } from "../SignUp";
 
 export default function SignIn() {
 
     const [formData, setFormData] = useState({email: "", password: ""});
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState({email: false, password: false});
     const {auth, signIn} = useAuth();
     const navigate = useNavigate();
 
@@ -33,11 +35,33 @@ export default function SignIn() {
 
     return (
         <SignInContainer>
-        <h1>Refined Rags</h1>
           <form onSubmit={handleSubmit}>
-            <input placeholder="E-mail" type="email" name="email" autoComplete="email" value={formData.email} onChange={handleChange} required disabled={loading}/>
-            <input placeholder="Password" type="password" name="password" autoComplete="current-password" value={formData.password} onChange={handleChange} required disabled={loading}/>
-            <button disabled={loading}>Entrar</button>
+            <FormInput 
+                placeholder="E-mail" 
+                type="email" 
+                name="email" 
+                autoComplete="email" 
+                value={formData.email} 
+                onChange={handleChange}
+                onInvalid={() => setError({...error, email: true})}
+                onInput={() => setError({...error, email: false})}
+                err={error.email ? 1 : 0}
+                required 
+                disabled={loading}/>
+            <FormInput 
+                placeholder="Password" 
+                type="password" 
+                name="password" 
+                autoComplete="current-password"
+                minLength="3"
+                value={formData.password} 
+                onChange={handleChange}
+                onInvalid={() => setError({...error, password: true})} 
+                onInput={() => setError({...error, password: false})} 
+                err={error.password ? 1 : 0}
+                required
+                disabled={loading}/>
+            <button disabled={loading || !formData.email || !formData.password}>Sign In</button>
             <p>New customer? <Link to="/signup">Start here</Link></p>
           </form>
             
@@ -47,7 +71,6 @@ export default function SignIn() {
 }
 
 const SignInContainer = styled.div`
-    background-color: #EEEEEE;
     display: flex;
     flex-direction:column;
     justify-content: flex-start;
