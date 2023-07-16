@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
 
-    const {auth} = useAuth();
+    const {auth, signOut} = useAuth();
     console.log(auth)
 
     return(
@@ -13,9 +13,10 @@ export default function Header() {
             <div>
             {auth ? <p>Hello, {auth.name}!</p> : ""}
             <ul>
-                <li><Link to="/signin">Sign In</Link></li>
-                <li><Link to="/cart">Cart</Link></li>
-                <li><Link to="/checkout">Check Out</Link></li>
+                <li><Link to="/signin" style={{ textDecoration: 'none' }}>Sign In</Link></li>
+                <li><Link to="/cart" style={{ textDecoration: 'none' }}>Cart</Link></li>
+                <li><Link to="/checkout" style={{ textDecoration: 'none' }}>Check Out</Link></li>
+                <li onClick={signOut}>Logout</li>
             </ul>
             </div>
         </Top>
@@ -54,12 +55,13 @@ const Top = styled.div`
     li{
         padding: 0 10px;
         font-family: 'Roboto', sans-serif;
-        :link{
-            text-decoration: none;
-        }
-        :visited{
-            text-decoration: none;
-        }
+    }
+    li:hover{
+        cursor: pointer;
+    }
+    a:-webkit-any-link {
+        text-decoration: none;
+        color: inherit;
     }
     img {
         width: 120px;
