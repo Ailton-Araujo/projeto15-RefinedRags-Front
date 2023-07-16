@@ -2,7 +2,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import api from "../../services/Api";
+import { signInPost } from "../../services/Api";
 import { FormInput } from "../SignUp";
 
 export default function SignIn() {
@@ -15,7 +15,7 @@ export default function SignIn() {
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const promise = api.signIn({ ...formData });
+    const promise = signInPost({ ...formData });
     promise.then((res) => {
       setLoading(false);
       signIn(res.data);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import api from "../../services/Api";
+import { signUpPost } from "../../services/Api";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ export default function SignUp() {
     }
     const data = { ...formData };
     delete data.passwordConfirmation;
-    const promise = api.signUp(data);
+    const promise = signUpPost(data);
     promise.then(() => {
       setLoading(false);
       navigate("/signin");

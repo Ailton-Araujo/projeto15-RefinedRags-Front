@@ -9,23 +9,15 @@ function tokenProvider(auth) {
   };
 }
 
-function signUp(body) {
-  const promise = axios.post('/signup', body);
+function signUpPost(body) {
+  const promise = axios.post("/signup", body);
   return promise;
 }
 
-function signIn(body) {
-  const promise = axios.post('/signin', body);
+function signInPost(body) {
+  const promise = axios.post("/signin", body);
   return promise;
 }
-
-const api = {
-  signIn,
-  signUp
-}
-
-export default api;
-
 
 function getProducts(success, failure) {
   axios
@@ -38,4 +30,4 @@ function getProducts(success, failure) {
     });
 }
 
-export { getProducts };
+export { getProducts, signInPost, signUpPost };
