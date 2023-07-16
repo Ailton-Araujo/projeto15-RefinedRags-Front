@@ -10,7 +10,7 @@ export default function SignIn() {
     const [formData, setFormData] = useState({email: "", password: ""});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState({email: false, password: false});
-    const {auth, signIn} = useAuth();
+    const {signIn} = useAuth();
     const navigate = useNavigate();
 
     function handleSubmit(e){
@@ -74,10 +74,11 @@ const SignInContainer = styled.div`
     display: flex;
     flex-direction:column;
     justify-content: flex-start;
+    margin-top: 120px;
     p {
-        margin-top: 5px;
+        margin-top: 10px;
     }
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 270px);
     padding: 25px;
 `

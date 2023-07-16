@@ -68,19 +68,21 @@ const PageContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  margin-top: 200px;
+  margin-top: 110px;
+  background-color: #ffffff;
 `;
 
 const ProductsContainer = styled.ul`
-  padding: 20px;
+  padding: 40px;
   display: flex;
+  margin-top: 100px;
   justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 800px;
   flex-wrap: wrap;
   gap: 40px;
-  background-color: #81ecff4c;
+  background-color: #e3e2f7;
 
   @media (max-width: 576px) {
     gap: 20px;
@@ -89,7 +91,6 @@ const ProductsContainer = styled.ul`
 `;
 
 const ButtonSet = styled.button`
-  background-color: #3b3eff;
   color: #ffffff;
   margin-left: 15px;
   width: 40px;
@@ -116,4 +117,11 @@ const ButtonsContainer = styled.div`
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
+  position: fixed;
+  top: 115px;
+  z-index: 1;
+  background-color: #ffffff;
+  width: 100%;
+  padding: 15px;
+  height: 80px;
 `;

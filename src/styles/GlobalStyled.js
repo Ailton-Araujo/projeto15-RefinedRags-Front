@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+
   form{
     display: flex;
     flex-direction: column;
@@ -19,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
     border: none;
     border-radius: 5px;
-    background-color: #3b3eff;
+    background-color: #746cd9;
     font-size: 16px;
     font-weight: 600;
     color: #fff;
@@ -29,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input{
-    margin-top:10px;
+    margin-top:15px;
     font-size: 16px;
     height:28px;
     border-width: 1.5px;
