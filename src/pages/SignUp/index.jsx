@@ -107,6 +107,7 @@ export default function SignUp() {
 }
 
 const SignUpContainer = styled.div`
+    margin-top: 120px;
     display: flex;
     flex-direction:column;
     justify-content: flex-start;
@@ -114,7 +115,7 @@ const SignUpContainer = styled.div`
         margin-top: 10px;
     }
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 270px);
     padding: 25px;
     div{
         display: flex;

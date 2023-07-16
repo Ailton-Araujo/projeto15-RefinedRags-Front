@@ -111,3 +111,69 @@ export default function Home() {
     </PageContainer>
   );
 }
+
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  margin-top: 110px;
+  background-color: #ffffff;
+`;
+
+const ProductsContainer = styled.ul`
+  padding: 40px;
+  display: flex;
+  margin-top: 100px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  flex-wrap: wrap;
+  gap: 40px;
+  background-color: #e3e2f7;
+
+  @media (max-width: 576px) {
+    gap: 20px;
+    padding: 10px;
+  }
+`;
+
+const ButtonSet = styled.button`
+  color: #ffffff;
+  margin-left: 15px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+
+  &:nth-child(${(props) => props.$setIndex + 2}) {
+    background-color: #ffffff;
+    color: #555555;
+  }
+
+  p {
+    color: inherit;
+    font-size: 20px;
+  }
+`;
+
+const ButtonsContainer = styled.div`
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 115px;
+  z-index: 1;
+  background-color: #ffffff;
+  width: 100%;
+  padding: 15px;
+  height: 80px;
+`;

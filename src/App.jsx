@@ -7,7 +7,6 @@ function App() {
   return (
     <AuthProvider>
       <Header />
-      <Footer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<Product />} />
@@ -16,6 +15,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckOut />} />
       </Routes>
+      <Footer />
     </AuthProvider>
   );
 }
