@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 
-export const Container = styled.div`
+export const Container = styled.main`
   background-color: #ffffff;
   display: flex;
   gap: 50px;
@@ -11,7 +11,8 @@ export const Container = styled.div`
   border-radius: 10px;
   width: 100%;
   max-width: 800px;
-  margin: 200px auto;
+  height: calc(100vh - 320px);
+  margin: 25px auto;
   font-family: Arial, Helvetica, sans-serif;
 
   img {

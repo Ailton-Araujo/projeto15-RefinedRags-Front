@@ -43,6 +43,10 @@ const GlobalStyle = createGlobalStyle`
   button:disabled{
     opacity: 0.55;
   }
+
+  & div:where(.swal2-icon){
+    width: 100%;
+  }
 `;
 
 export default GlobalStyle;

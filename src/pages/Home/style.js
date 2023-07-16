@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const PageContainer = styled.div`
+export const PageContainer = styled.main`
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  margin-top: 200px;
+  margin-top: 15px;
 `;
 
 export const ProductsContainer = styled.ul`

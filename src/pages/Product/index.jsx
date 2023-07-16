@@ -1,4 +1,5 @@
 import useProducts from "../../hooks/useProducts";
+import useCart from "../../hooks/useCart";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 export default function Product() {
   const { products } = useProducts();
+  const { cart, addCart } = useCart();
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [inventory, setInventory] = useState([]);
@@ -14,16 +16,13 @@ export default function Product() {
   const sizeRef = useRef(null);
   const navigate = useNavigate();
 
-  function addToCart(data) {
-    console.log(data);
-  }
-
   function handleForm(event) {
     event.preventDefault();
 
     const data = {
+      id,
       size: sizeRef.current.value,
-      quantity: quantity,
+      quantity: Number(quantity),
     };
 
     if (data.quantity <= 0) {
@@ -34,7 +33,7 @@ export default function Product() {
       return alert("Choose size.");
     }
 
-    addToCart(data);
+    addCart(data);
   }
 
   useEffect(() => {
@@ -51,8 +50,8 @@ export default function Product() {
   return (
     <Container>
       {products.length === 0 ? (
-          <RotatingLines strokeColor="#000000" strokeWidth="4" width="80" />
-        ) : (
+        <RotatingLines strokeColor="#000000" strokeWidth="4" width="80" />
+      ) : (
         <>
           <img src={product.img} alt={product.name} />
           <div>
@@ -77,7 +76,12 @@ export default function Product() {
                       );
                     })}
               </select>
-              <input type="number" min="1" value={quantity} onChange={(event) => setQuantity(event.target.value)} />
+              <input
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={(event) => setQuantity(event.target.value)}
+              />
               <button>Add To Cart</button>
             </form>
             <h3>Product Details</h3>

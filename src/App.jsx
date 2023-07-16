@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Header, Footer } from "./components";
+import { Header, Footer } from "./components/index";
 import { SignIn, SignUp, Home, Product, Cart, CheckOut } from "./pages/index";
 import { AuthProvider } from "./contexts/authContext";
 
