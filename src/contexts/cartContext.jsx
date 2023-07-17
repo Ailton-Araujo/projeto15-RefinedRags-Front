@@ -29,8 +29,14 @@ export function CartProvider({ children }) {
     });
   }
 
+  function clearCart() {
+    setCart([]);
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addCart, editCart, removeCart }}>
+    <CartContext.Provider
+      value={{ cart, addCart, editCart, clearCart, removeCart }}
+    >
       {children}
     </CartContext.Provider>
   );

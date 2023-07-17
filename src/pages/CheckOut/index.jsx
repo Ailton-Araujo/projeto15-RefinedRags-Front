@@ -16,7 +16,7 @@ export default function CheckOut() {
   const { auth } = useAuth();
   const { user } = useUser();
   const { products } = useProducts();
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
 
   const navigate = useNavigate();
 
@@ -51,18 +51,22 @@ export default function CheckOut() {
 
   function handleCheckout() {
     setTryCheckout(true);
-    function success() {
+    function success(data) {
+      alert(data);
+      clearCart();
       setTryCheckout(false);
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-      const msg = {
-        to: user.email,
-        from: "sender@example.org",
-        subject: "Confirmation of Purchase",
-        text: "Thank you for supporting my online store! Purchases both big and small help us keep our dream of providing the best quality products to our customers.",
-      };
-      console.log(checkoutData);
+      navigate("/");
+
+      //   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      //   const msg = {
+      //     to: user.email,
+      //     from: "sender@example.org",
+      //     subject: "Confirmation of Purchase",
+      //     text: "Thank you for supporting my online store! Purchases both big and small help us keep our dream of providing the best quality products to our customers.",
+      //   };
     }
-    function failure() {
+    function failure(data) {
+      console.log(data);
       setTryCheckout(false);
     }
     delete checkoutData.paymentInfo.focus;

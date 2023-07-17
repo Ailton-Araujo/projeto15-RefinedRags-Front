@@ -74,6 +74,8 @@ export default function Payment({
               type="text"
               name="name"
               placeholder="Name"
+              pattern=".{5,}"
+              minLength={5}
               value={checkoutData.paymentInfo.name}
               required
               onChange={handleInputChange}

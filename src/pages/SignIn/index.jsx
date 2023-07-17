@@ -19,7 +19,7 @@ export default function SignIn() {
     promise.then((res) => {
       setLoading(false);
       signIn(res.data);
-      navigate("/checkout");
+      navigate("/");
     });
     promise.catch((err) => {
       setLoading(false);

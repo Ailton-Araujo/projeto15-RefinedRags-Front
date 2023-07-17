@@ -93,6 +93,7 @@ export default function Address({
           />
           <input
             type="text"
+            maxLength={35}
             name="address"
             placeholder="Address"
             value={checkoutData.addressInfo.address}

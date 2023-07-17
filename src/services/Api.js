@@ -42,16 +42,16 @@ function getProducts(success, failure) {
 }
 
 function postShopping(obj, auth, success, failure) {
-  console.log(obj, auth);
-  setTimeout(success, 5000);
-  // axios
-  //   .post("/checkout", obj, tokenProvider(auth))
-  //   .then(() => {
-  //     success();
-  //   })
-  //   .catch((error) => {
-  //     failure(error.response.data);
-  //   });
+  // console.log(obj, auth);
+  // setTimeout(success, 5000);
+  axios
+    .post("/checkout", obj, tokenProvider(auth))
+    .then((res) => {
+      success(res.data);
+    })
+    .catch((error) => {
+      failure(error);
+    });
 }
 
 function getAddress(zipCode, callBack) {
