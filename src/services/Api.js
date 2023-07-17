@@ -19,6 +19,21 @@ function signInPost(body) {
   return promise;
 }
 
+function getUser(success, auth) {
+  console.log("teste");
+
+  success({ name: "teste" });
+
+  // axios
+  //   .get("/user", tokenProvider(auth))
+  //   .then((response) => {
+  //     success(response.data);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error.response.data);
+  //   });
+}
+
 function getProducts(success, failure) {
   axios
     .get("/")
@@ -30,4 +45,4 @@ function getProducts(success, failure) {
     });
 }
 
-export { getProducts, signInPost, signUpPost };
+export { getProducts, getUser, signInPost, signUpPost };

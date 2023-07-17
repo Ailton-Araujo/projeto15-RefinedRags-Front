@@ -1,14 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import useAuth from "../../hooks/useAuth";
+import useUser from "../../hooks/useUser";
 import PrevCart from "./PrevCart";
 
 export default function Header() {
   const navigate = useNavigate();
   const [isShown, setIsShown] = useState(false);
   const { auth, signOut } = useAuth();
+  const { user, userSignIn, userSignOut } = useUser();
   console.log(auth);
+
+  useEffect(() => {
+    if (auth) {
+      userSignIn(auth);
+    }
+  }, [auth]);
 
   return (
     <Top>
@@ -19,7 +27,7 @@ export default function Header() {
         }}
       />
       <div>
-        {auth ? <p>Hello, {auth.name}!</p> : ""}
+        {Object.values(user).length !== 0 ? <p>Hello, {user.name}!</p> : ""}
         <ul>
           {auth ? (
             ""
@@ -30,7 +38,17 @@ export default function Header() {
               </Link>
             </li>
           )}
-          {auth ? <li onClick={signOut}>Logout</li> : ""}
+          {auth ? (
+            <li
+              onClick={() => {
+                signOut(), userSignOut();
+              }}
+            >
+              Logout
+            </li>
+          ) : (
+            ""
+          )}
           <li>
             <Link
               to="/cart"

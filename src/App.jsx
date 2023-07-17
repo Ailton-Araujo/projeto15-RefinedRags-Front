@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import { Header, Footer } from "./components/index";
 import { SignIn, SignUp, Home, Product, Cart, CheckOut } from "./pages/index";
-import { AuthProvider } from "./contexts/authContext";
 
 function App() {
   return (
-    <AuthProvider>
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -16,7 +15,7 @@ function App() {
         <Route path="/checkout" element={<CheckOut />} />
       </Routes>
       <Footer />
-    </AuthProvider>
+    </>
   );
 }
 
