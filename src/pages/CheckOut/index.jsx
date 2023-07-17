@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { ThreeDots } from "react-loader-spinner";
 import Swal from "sweetalert2";
-import sgMail from "@sendgrid/mail";
 import useAuth from "../../hooks/useAuth";
 import useUser from "../../hooks/useUser";
 import useProducts from "../../hooks/useProducts";
@@ -17,9 +16,7 @@ export default function CheckOut() {
   const { user } = useUser();
   const { products } = useProducts();
   const { cart, clearCart } = useCart();
-
   const navigate = useNavigate();
-
   const [formStep, setFormStep] = useState("address");
   const [tryCheckout, setTryCheckout] = useState(false);
   const [checkoutData, setCheckoutData] = useState({
@@ -55,15 +52,8 @@ export default function CheckOut() {
       alert(data);
       clearCart();
       setTryCheckout(false);
-      navigate("/");
 
-      //   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-      //   const msg = {
-      //     to: user.email,
-      //     from: "sender@example.org",
-      //     subject: "Confirmation of Purchase",
-      //     text: "Thank you for supporting my online store! Purchases both big and small help us keep our dream of providing the best quality products to our customers.",
-      //   };
+      navigate("/");
     }
     function failure(data) {
       console.log(data);
