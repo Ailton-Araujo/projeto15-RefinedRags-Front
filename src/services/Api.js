@@ -20,18 +20,14 @@ function signInPost(body) {
 }
 
 function getUser(success, auth) {
-  console.log("teste");
-
-  success({ name: "teste" });
-
-  // axios
-  //   .get("/user", tokenProvider(auth))
-  //   .then((response) => {
-  //     success(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error.response.data);
-  //   });
+  axios
+    .get("/user", tokenProvider(auth))
+    .then((response) => {
+      success(response.data);
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
 }
 
 function getProducts(success, failure) {

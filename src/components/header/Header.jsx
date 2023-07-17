@@ -10,7 +10,6 @@ export default function Header() {
   const [isShown, setIsShown] = useState(false);
   const { auth, signOut } = useAuth();
   const { user, userSignIn, userSignOut } = useUser();
-  console.log(auth);
 
   useEffect(() => {
     if (auth) {

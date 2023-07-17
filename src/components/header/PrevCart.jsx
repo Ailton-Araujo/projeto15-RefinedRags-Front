@@ -56,7 +56,7 @@ const DisplayCart = styled.aside`
   box-shadow: var(--shadow-elevation-medium);
   border-radius: 15px;
   position: absolute;
-  top: 75px;
+  top: 95px;
   right: 65px;
   z-index: 3;
 
