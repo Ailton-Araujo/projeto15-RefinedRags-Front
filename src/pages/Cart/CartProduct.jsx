@@ -27,7 +27,7 @@ export default function CartProduct({ info, cartIndex }) {
             <p>
               <strong>{item.name}</strong>
             </p>
-            <p>{`Size: ${size}`}</p>
+            <p>{`Size: ${size.toUpperCase()}`}</p>
           </span>
           <span>
             <label>

@@ -15,10 +15,14 @@ export default function CheckOut() {
   const { user } = useUser();
   const { products } = useProducts();
   const { cart } = useCart();
+
   const navigate = useNavigate();
+
   const [formStep, setFormStep] = useState("address");
   const [tryCheckout, setTryCheckout] = useState(false);
   const [checkoutData, setCheckoutData] = useState({
+    buyerInfo: user,
+    productInfo: cart,
     addressInfo: {
       address: "",
       district: "",
@@ -45,13 +49,13 @@ export default function CheckOut() {
 
   function handleCheckout() {
     setTryCheckout(true);
-    // function success() {
-    //   setTryCheckout(false);
-    // }
-    // function failure() {
-    //   setTryCheckout(false);
-    // }
-    // postShopping(checkoutData, auth, success, failure);
+    function success() {
+      setTryCheckout(false);
+    }
+    function failure() {
+      setTryCheckout(false);
+    }
+    postShopping(checkoutData, auth, success, failure);
   }
 
   return (
@@ -76,7 +80,34 @@ export default function CheckOut() {
             const product = products.find(
               (product) => product.productId == element.id
             );
-            return <li key={index}>{product.name}</li>;
+            return (
+              <ProductDisplay key={index}>
+                <div>
+                  <img src={product.img} alt={product.name} />
+                  <span>
+                    <p>{product.name}</p>
+                    <p>Size: {element.size.toUpperCase()}</p>
+                  </span>
+                </div>
+                <div>
+                  <p>Quantity: {element.quantity} units</p>
+                  <p>
+                    Price:{" "}
+                    {product.price.toLocaleString("en", {
+                      style: "currency",
+                      currency: "USD",
+                    })}
+                  </p>
+                </div>
+                <p>
+                  Total Price:{" "}
+                  {(element.quantity * product.price).toLocaleString("en", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </p>
+              </ProductDisplay>
+            );
           })}
         </ul>
       </article>
@@ -121,5 +152,45 @@ const FormsContainer = styled.div`
   width: 55%;
   @media (max-width: 700px) {
     width: 100%;
+  }
+`;
+
+const ProductDisplay = styled.li`
+  width: 100%;
+  padding: 5px 10px;
+  margin: 5px 15px;
+  border: 1px solid #dedede;
+  border-radius: 15px;
+  & div:nth-child(1) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    p {
+      font-size: 18px;
+      line-height: 25px;
+      color: #726cd9;
+    }
+    img {
+      width: 85px;
+      height: 85px;
+      border-radius: 25px;
+    }
+  }
+  & div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-size: 18px;
+      line-height: 25px;
+      color: #726cd9;
+    }
+  }
+  p {
+    text-align: end;
+    font-size: 18px;
+    line-height: 25px;
+    color: #726cd9;
   }
 `;

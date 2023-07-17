@@ -63,7 +63,7 @@ export default function Payment({
               type="tel"
               name="number"
               placeholder="Card Number"
-              pattern="[\d| ]{16,22}"
+              pattern=".{19}"
               maxLength={19}
               value={checkoutData.paymentInfo.number}
               required

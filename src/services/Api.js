@@ -42,7 +42,8 @@ function getProducts(success, failure) {
 }
 
 function postShopping(obj, auth, success, failure) {
-  success();
+  console.log(obj, auth);
+  setTimeout(success, 5000);
   // axios
   //   .post("/checkout", obj, tokenProvider(auth))
   //   .then(() => {

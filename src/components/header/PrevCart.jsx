@@ -21,7 +21,7 @@ export default function PrevCart() {
               <img src={item.img} alt={item.name} />
               <div>
                 <p>{item.name}</p>
-                <p>{`Size: ${shopping.size}`}</p>
+                <p>{`Size: ${shopping.size.toUpperCase()}`}</p>
                 <p>{`Quantity: ${shopping.quantity}`}</p>
                 <p>
                   {`Price: ${item.price.toLocaleString("en", {

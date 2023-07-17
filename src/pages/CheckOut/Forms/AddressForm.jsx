@@ -11,7 +11,6 @@ export default function Address({
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setFormStep("payment");
-    console.log(checkoutData);
   };
 
   const handleOnBlur = () => {
@@ -39,7 +38,6 @@ export default function Address({
     }));
   };
 
-  console.log(checkoutData);
   return (
     <AddressContainer>
       <h2
@@ -53,7 +51,7 @@ export default function Address({
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            maxLength={9}
+            maxLength={8}
             name="zipCode"
             placeholder="Zip-Code"
             value={checkoutData.addressInfo.zipCode}
