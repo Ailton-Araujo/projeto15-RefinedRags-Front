@@ -126,7 +126,7 @@ export default function Home() {
       </OptionsContainer>
       <ProductsContainer>
         {products.length === 0 ? (
-          <RotatingLines strokeColor="#ffffff" strokeWidth="4" width="80" />
+          <RotatingLines strokeColor="#726CD9" strokeWidth="4" width="80" />
         ) : (
           productSets[currentSet]?.map((product) => (
             <li key={product.productId}>

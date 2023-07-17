@@ -34,6 +34,7 @@ export default function Product() {
     }
 
     addCart(data);
+    navigate(-1);
   }
 
   useEffect(() => {
