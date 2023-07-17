@@ -126,26 +126,31 @@ export default function CheckOut() {
           })}
         </ul>
       </article>
-      <button
-        disabled={formStep !== "checkout" || tryCheckout}
-        type="button"
-        onClick={handleCheckout}
-      >
-        {tryCheckout ? (
-          <ThreeDots
-            height="20"
-            width="60"
-            radius="11"
-            color=" #FFF"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClassName=""
-            visible={true}
-          />
-        ) : (
-          "CheckOut"
-        )}
-      </button>
+      <ButtonsContainer>
+        <button type="button" onClick={() => navigate("/")}>
+          Continue to Shopping
+        </button>
+        <button
+          disabled={formStep !== "checkout" || tryCheckout}
+          type="button"
+          onClick={handleCheckout}
+        >
+          {tryCheckout ? (
+            <ThreeDots
+              height="20"
+              width="60"
+              radius="11"
+              color=" #FFF"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            "CheckOut"
+          )}
+        </button>
+      </ButtonsContainer>
     </CheckoutContainer>
   );
 }
@@ -159,6 +164,7 @@ const CheckoutContainer = styled.main`
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 15px;
+  margin-bottom: 15px;
   article {
     width: 100%;
     display: flex;
@@ -174,7 +180,23 @@ const CheckoutContainer = styled.main`
       }
     }
   }
+
   button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const ButtonsContainer = styled.div`
+  width: 100%;
+  margin-left: 15px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+  button {
+    height: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
