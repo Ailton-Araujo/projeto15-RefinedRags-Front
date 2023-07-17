@@ -3,7 +3,7 @@ import useCart from "../../hooks/useCart";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, BackButton } from "./style";
+import { PageContainer, Container, BackButton } from "./style";
 import { RotatingLines } from "react-loader-spinner";
 
 export default function Product() {
@@ -48,48 +48,50 @@ export default function Product() {
   }, [products]);
 
   return (
-    <Container>
-      {products.length === 0 ? (
-        <RotatingLines strokeColor="#000000" strokeWidth="4" width="80" />
-      ) : (
-        <>
-          <img src={product.img} alt={product.name} />
-          <div>
-            <h2>{product.name}</h2>
-            <h3>{"$" + product.price}</h3>
-            <form onSubmit={(event) => handleForm(event)}>
-              <select ref={sizeRef}>
-                <option>Select size</option>
-                {product.type === "sneakers"
-                  ? inventory.map((size, index) => {
-                      return (
-                        <option value={size} key={index}>
-                          {size.replace("s", "").toUpperCase()}
-                        </option>
-                      );
-                    })
-                  : inventory.map((size, index) => {
-                      return (
-                        <option value={size} key={index}>
-                          {size.toUpperCase()}
-                        </option>
-                      );
-                    })}
-              </select>
-              <input
-                type="number"
-                min="1"
-                value={quantity}
-                onChange={(event) => setQuantity(event.target.value)}
-              />
-              <button>Add To Cart</button>
-            </form>
-            <h3>Product Details</h3>
-            <p>{product.description}</p>
-          </div>
-          <BackButton onClick={() => navigate("/")} />
-        </>
-      )}
-    </Container>
+    <PageContainer>
+      <Container>
+        {products.length === 0 ? (
+          <RotatingLines strokeColor="#000000" strokeWidth="4" width="80" />
+        ) : (
+          <>
+            <img src={product.img} alt={product.name} />
+            <div>
+              <h2>{product.name}</h2>
+              <h3>{"$" + product.price}</h3>
+              <form onSubmit={(event) => handleForm(event)}>
+                <select ref={sizeRef}>
+                  <option>Select size</option>
+                  {product.type === "sneakers"
+                    ? inventory.map((size, index) => {
+                        return (
+                          <option value={size} key={index}>
+                            {size.replace("s", "").toUpperCase()}
+                          </option>
+                        );
+                      })
+                    : inventory.map((size, index) => {
+                        return (
+                          <option value={size} key={index}>
+                            {size.toUpperCase()}
+                          </option>
+                        );
+                      })}
+                </select>
+                <input
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(event) => setQuantity(event.target.value)}
+                />
+                <button>Add To Cart</button>
+              </form>
+              <h3>Product Details</h3>
+              <p>{product.description}</p>
+            </div>
+            <BackButton onClick={() => navigate(-1)} />
+          </>
+        )}
+      </Container>
+    </PageContainer>
   );
 }

@@ -5,9 +5,9 @@ export const PageContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 270px);
   width: 100%;
-  margin-top: 15px;
+  margin: 20px 0;
 `;
 
 export const ProductsContainer = styled.ul`
@@ -83,6 +83,8 @@ export const OptionsContainer = styled.div`
     font-size: 16px;
     text-align: center;
     font-family: inherit;
+    padding: 5px 2px;
+    border-radius: 10px;
 
     option {
       padding: 0;

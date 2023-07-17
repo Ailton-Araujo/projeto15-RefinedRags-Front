@@ -82,6 +82,6 @@ const SignInContainer = styled.main`
     margin-top: 10px;
   }
   width: 100vw;
-  height: calc(100vh - 285px);
+  height: calc(100vh - 245px);
   padding: 25px;
 `;

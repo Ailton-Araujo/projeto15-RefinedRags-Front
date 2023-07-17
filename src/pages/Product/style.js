@@ -1,19 +1,23 @@
 import styled from "styled-components";
 import { BsFillArrowLeftSquareFill } from "react-icons/bs";
 
-export const Container = styled.main`
+export const PageContainer =styled.div`
+  min-height: calc(100vh - 255px);
+`;
+
+export const Container = styled.div`
   background-color: #ffffff;
   display: flex;
-  gap: 50px;
+  gap: 20px;
   align-items: center;
   justify-content: center;
   position: relative;
   border-radius: 10px;
-  width: 100%;
+  width: fit-content;
   max-width: 800px;
-  height: calc(100vh - 320px);
   margin: 25px auto;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 15px;
 
   img {
     width: 450px;
@@ -107,7 +111,7 @@ export const Container = styled.main`
 
   @media (max-width: 576px) {
     padding: 20px;
-    width: 85%;
+    width: 90%;
 
     h2 {
       font-size: 30px;
@@ -128,11 +132,12 @@ export const Container = styled.main`
 export const BackButton = styled(BsFillArrowLeftSquareFill)`
   font-size: 35px;
   position: absolute;
-  right: 20px;
-  top: 0;
+  right: 10px;
+  top: 10px;
   cursor: pointer;
 
   @media (max-width: 768px) {
-    top: -20px;
+    top: 0;
+    right: 0;
   }
 `;

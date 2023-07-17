@@ -21,12 +21,14 @@ export default function Header() {
 
   return (
     <Top>
-      <img
-        src="https://drive.google.com/uc?id=10T5D_D1aHO7kX_jpqe6SRQnjFIoQhCCC"
-        onClick={() => {
-          navigate("/");
-        }}
-      />
+      <Link to="/">
+        <img
+          src="https://drive.google.com/uc?id=10T5D_D1aHO7kX_jpqe6SRQnjFIoQhCCC"
+          onClick={() => {
+            navigate("/");
+          }}
+        />
+      </Link>
       <div>
         {Object.values(user).length !== 0 ? <p>Hello, {user.name}!</p> : ""}
         <ul>
@@ -76,7 +78,7 @@ export default function Header() {
 
 const Top = styled.header`
   width: 100%;
-  height: 120px;
+  height: 80px;
   background: #f6f6f6;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   position: fixed;
@@ -94,7 +96,7 @@ const Top = styled.header`
   div {
     display: flex;
     flex-direction: column;
-    height: 100px;
+    height: 80px;
     justify-content: center;
     align-items: flex-end;
   }
@@ -116,9 +118,13 @@ const Top = styled.header`
     color: inherit;
   }
   img {
-    width: 120px;
-    border-radius: 98.5px;
+    height: 70px;
+    border-radius: 78.5px;
     margin-right: 18px;
     cursor: pointer;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 20px;
   }
 `;

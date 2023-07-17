@@ -146,7 +146,7 @@ export default function CheckOut() {
 }
 
 const CheckoutContainer = styled.main`
-  min-height: calc(100vh - 285px);
+  min-height: calc(100vh - 265px);
   width: 85%;
   margin: 0 auto;
   display: flex;

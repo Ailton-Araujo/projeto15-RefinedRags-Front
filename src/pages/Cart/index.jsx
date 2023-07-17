@@ -57,7 +57,8 @@ export default function Cart() {
 }
 
 const CartContainer = styled.main`
-  min-height: calc(100vh - 285px);
+  margin: 20px 0;
+  min-height: calc(100vh - 270px);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -65,6 +66,10 @@ const CartContainer = styled.main`
   align-items: center;
   ul {
     width: 85%;
+
+    @media (max-width: 700px) {
+      width: 90%;
+    }
   }
 `;
 

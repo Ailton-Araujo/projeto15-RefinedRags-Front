@@ -32,6 +32,7 @@ const Bottom = styled.footer`
   color: #726cd9;
   font-weight: 400;
   font-size: 14px;
+  box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.15);
   h2 {
     font-size: 16px;
     margin-bottom: 3px;

@@ -71,6 +71,10 @@ const Product = styled.li`
   justify-content: space-between;
   align-items: center;
   margin: 10px 0px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  gap: 10px;
   img {
     width: 105px;
     height: 105px;
@@ -81,7 +85,7 @@ const Product = styled.li`
       width: 35px;
       height: 35px;
       padding: 0px;
-      margin: 0px;
+      margin: 0 25px;
       border-radius: 50%;
       background: red;
       font-size: 15px;
@@ -97,6 +101,19 @@ const Product = styled.li`
     margin-left: 5px;
     border: 1px solid black;
   }
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -110,6 +127,7 @@ const InfoContainer = styled.div`
   div {
     width: 90%;
     display: flex;
+    gap: 20px;
     p {
       color: #726cd9;
     }
@@ -134,6 +152,22 @@ const InfoContainer = styled.div`
     & span:nth-child(3) {
       width: 25%;
       align-items: end;
+    }
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    gap: 10px;
+
+    div {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    span {
+      width: auto !important;
+      padding: 0 !important;
+      text-align: center;
     }
   }
 `;
