@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getAddress } from "../../../services/Api";
 import { styled } from "styled-components";
+import { formatZipCode } from "./utils";
 
 export default function Address({
   formStep,
@@ -14,23 +15,54 @@ export default function Address({
   };
 
   const handleOnBlur = () => {
-    function success(data) {
-      setCheckoutData((prev) => ({
-        ...prev,
-        addressInfo: {
-          ...prev.addressInfo,
-          address: data.logradouro,
-          district: data.bairro,
-          zipCode: data.cep,
-          city: data.localidade,
-          state: data.uf,
-        },
-      }));
+    const zipCode = checkoutData.addressInfo.zipCode;
+
+    function callBack(data) {
+      if (!("erro" in data)) {
+        setCheckoutData((prev) => ({
+          ...prev,
+          addressInfo: {
+            ...prev.addressInfo,
+            address: data.logradouro,
+            district: data.bairro,
+            zipCode: data.cep,
+            city: data.localidade,
+            state: data.uf,
+          },
+        }));
+      } else {
+        setCheckoutData((prev) => ({
+          ...prev,
+          addressInfo: {
+            ...prev.addressInfo,
+            zipCode: "",
+          },
+        }));
+        alert("ZipCode not Found");
+      }
     }
-    getAddress(checkoutData.addressInfo.zipCode, success);
+
+    if (zipCode !== "") {
+      const validateZip = /^[0-9]{8}$/;
+      if (validateZip.test(zipCode)) {
+        getAddress(zipCode, callBack);
+      } else {
+        setCheckoutData((prev) => ({
+          ...prev,
+          addressInfo: {
+            ...prev.addressInfo,
+            zipCode: "",
+          },
+        }));
+        alert("Invalid ZipCode");
+      }
+    }
   };
 
   const handleInputChange = (evt) => {
+    if (evt.target.name === "zipCode") {
+      evt.target.value = formatZipCode(evt.target.value);
+    }
     const { name, value } = evt.target;
     setCheckoutData((prev) => ({
       ...prev,

@@ -58,3 +58,8 @@ export function formatExpirationDate(value) {
 
   return clearValue;
 }
+
+export function formatZipCode(value) {
+  const clearValue = clearNumber(value);
+  return clearValue;
+}

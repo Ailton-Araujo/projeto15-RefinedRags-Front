@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
+import { ThreeDots } from "react-loader-spinner";
 import Swal from "sweetalert2";
+import sgMail from "@sendgrid/mail";
 import useAuth from "../../hooks/useAuth";
 import useUser from "../../hooks/useUser";
 import useProducts from "../../hooks/useProducts";
@@ -21,7 +23,7 @@ export default function CheckOut() {
   const [formStep, setFormStep] = useState("address");
   const [tryCheckout, setTryCheckout] = useState(false);
   const [checkoutData, setCheckoutData] = useState({
-    buyerInfo: user,
+    buyerInfo: user.email,
     productInfo: cart,
     addressInfo: {
       address: "",
@@ -51,10 +53,19 @@ export default function CheckOut() {
     setTryCheckout(true);
     function success() {
       setTryCheckout(false);
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      const msg = {
+        to: user.email,
+        from: "sender@example.org",
+        subject: "Confirmation of Purchase",
+        text: "Thank you for supporting my online store! Purchases both big and small help us keep our dream of providing the best quality products to our customers.",
+      };
+      console.log(checkoutData);
     }
     function failure() {
       setTryCheckout(false);
     }
+    delete checkoutData.paymentInfo.focus;
     postShopping(checkoutData, auth, success, failure);
   }
 
@@ -116,7 +127,20 @@ export default function CheckOut() {
         type="button"
         onClick={handleCheckout}
       >
-        {tryCheckout ? "teste" : "CheckOut"}
+        {tryCheckout ? (
+          <ThreeDots
+            height="20"
+            width="60"
+            radius="11"
+            color=" #FFF"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClassName=""
+            visible={true}
+          />
+        ) : (
+          "CheckOut"
+        )}
       </button>
     </CheckoutContainer>
   );
@@ -145,6 +169,11 @@ const CheckoutContainer = styled.main`
         width: 100%;
       }
     }
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

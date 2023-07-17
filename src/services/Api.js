@@ -54,12 +54,11 @@ function postShopping(obj, auth, success, failure) {
   //   });
 }
 
-function getAddress(zipCode, success, failure) {
+function getAddress(zipCode, callBack) {
   axios
     .get(`https://viacep.com.br/ws/${zipCode}/json/`)
     .then((res) => {
-      success(res.data);
-      console.log(res.data);
+      callBack(res.data);
     })
     .catch((error) => {
       console.log(error.response);
