@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import useAuth from "../../hooks/useAuth";
 import useUser from "../../hooks/useUser";
+import useCart from "../../hooks/useCart";
 import PrevCart from "./PrevCart";
 
 export default function Header() {
   const navigate = useNavigate();
   const [isShown, setIsShown] = useState(false);
   const { auth, signOut } = useAuth();
+  const { cart } = useCart();
   const { user, userSignIn, userSignOut } = useUser();
 
   useEffect(() => {
@@ -58,11 +60,13 @@ export default function Header() {
               Cart
             </Link>
           </li>
-          <li>
-            <Link to="/checkout" style={{ textDecoration: "none" }}>
-              CheckOut
-            </Link>
-          </li>
+          {cart.length !== 0 && (
+            <li>
+              <Link to="/checkout" style={{ textDecoration: "none" }}>
+                CheckOut
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
       {isShown && <PrevCart />}

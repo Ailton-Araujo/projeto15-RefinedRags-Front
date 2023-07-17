@@ -7,7 +7,6 @@ export function CartProvider({ children }) {
 
   function addCart(data) {
     const itens = cart.filter((element) => element.id === data.id);
-    console.log(itens);
     if (itens.length !== 0) {
       const item = itens.find((element) => element.size === data.size);
       if (item) {

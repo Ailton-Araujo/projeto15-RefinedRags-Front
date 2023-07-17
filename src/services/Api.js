@@ -41,4 +41,35 @@ function getProducts(success, failure) {
     });
 }
 
-export { getProducts, getUser, signInPost, signUpPost };
+function postShopping(obj, auth, success, failure) {
+  success();
+  // axios
+  //   .post("/checkout", obj, tokenProvider(auth))
+  //   .then(() => {
+  //     success();
+  //   })
+  //   .catch((error) => {
+  //     failure(error.response.data);
+  //   });
+}
+
+function getAddress(zipCode, success, failure) {
+  axios
+    .get(`https://viacep.com.br/ws/${zipCode}/json/`)
+    .then((res) => {
+      success(res.data);
+      console.log(res.data);
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+}
+
+export {
+  getProducts,
+  getUser,
+  getAddress,
+  postShopping,
+  signInPost,
+  signUpPost,
+};
